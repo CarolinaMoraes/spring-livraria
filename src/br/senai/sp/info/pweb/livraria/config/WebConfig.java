@@ -15,10 +15,17 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import br.senai.sp.info.pweb.livraria.filters.AutenticacaoPorSessaoInterceptor;
+
 @Configuration
 @ComponentScan("br.senai.sp.info.pweb.livraria")
 @EnableWebMvc
 public class WebConfig implements WebMvcConfigurer{
+	
+	@Bean
+	public AutenticacaoPorSessaoInterceptor getAutenticacaoPorSessaoInterceptor() {
+		return new AutenticacaoPorSessaoInterceptor();
+	}
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {

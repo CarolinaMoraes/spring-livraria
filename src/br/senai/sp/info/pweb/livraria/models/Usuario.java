@@ -1,5 +1,6 @@
 package br.senai.sp.info.pweb.livraria.models;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.util.DigestUtils;
 
 @Entity
 public class Usuario {
@@ -40,6 +42,14 @@ public class Usuario {
 	@Size(min = 6, max = 20, message = "{Size}")
 	@NotNull(message = "{NotNull}")
 	private String senha;
+	
+	public void hashearSenha() {
+		try {
+			this.senha = DigestUtils.md5DigestAsHex(this.senha.getBytes("UTF-8"));
+		} catch (UnsupportedEncodingException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 	public Long getId() {
 		return id;
