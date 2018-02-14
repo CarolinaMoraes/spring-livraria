@@ -10,7 +10,7 @@ public class LivroController {
 	
 	@GetMapping("/")
 	public String abrePaginaDeLivros() {
-		return "livros/lista";
+		return "livro/lista";
 	}
 
 }

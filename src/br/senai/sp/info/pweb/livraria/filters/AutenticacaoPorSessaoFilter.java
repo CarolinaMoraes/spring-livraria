@@ -31,7 +31,7 @@ public class AutenticacaoPorSessaoFilter extends HttpFilter{
 		
 		boolean necessitaAutenticacao = req.getRequestURI().contains("/app");
 		
-		if(necessitaAutenticacao && req.getSession().getAttribute("usuario") == null) {
+		if(necessitaAutenticacao && req.getSession().getAttribute("usuarioAutenticado") == null) {
 			res.setStatus(403);
 		}else {
 			chain.doFilter(req, res);

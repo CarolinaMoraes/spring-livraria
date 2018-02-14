@@ -59,10 +59,17 @@ public class UsuarioController {
 		}
 		
 		//Aplica o usuário na sessão
-		session.setAttribute("usuario", usuarioAutenticado);
+		session.setAttribute("usuarioAutenticado", usuarioAutenticado);
 		
 		//Redireciona para a página inicial
 		return "redirect:app";
+	}
+	
+	@GetMapping("/sair")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		
+		return "redirect:/";
 	}
 	
 	@PostMapping("/usuario/salvar")
